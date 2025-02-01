@@ -1,6 +1,6 @@
 # Ollama Proxy
 
-Ollama Proxy is a lightweight proxy service built with Flask. This guide provides essential steps to build and run the application using Docker.
+Ollama Proxy is a lightweight proxy service built with Flask. This guide provides essential steps to build and run the application using Docker. This proxy will remove the reasoning information (inside <think/> tag) from the model response. Build as a simple workaround for deepseek model being too explicit 
 
 ## Prerequisites
 
@@ -33,7 +33,6 @@ docker run -d \
     -p 11435:11435 \
     -e OLLAMA_API_KEY=your_api_key_here \
     -e OLLAMA_SERVER=http://your_ollama_server:11434 \
-    -e OLLAMA_PROXY_PORT=11435 \
     ollama-proxy
 ```
 
@@ -47,7 +46,7 @@ Once the container is running, you can access the proxy at:
 
 | Variable              | Description                                      | Default Value       |
 |-----------------------|--------------------------------------------------|---------------------|
-| `OLLAMA_API_KEY`      | Your API key for accessing Ollama.               | (Required)          |
+| `OLLAMA_API_KEY`      | Your API key for accessing Ollama.               | (Optional)          |
 | `OLLAMA_SERVER`       | URL of your Ollama server.                        | `http://localhost:11434` |
 | `OLLAMA_PROXY_PORT`   | Port on which the proxy will run.                 | `11435`             |
 | `OLLAMA_PROXY_HOST`   | Host address to bind the proxy.                   | `0.0.0.0`           |
